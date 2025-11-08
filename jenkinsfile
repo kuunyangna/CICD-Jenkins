@@ -39,8 +39,8 @@ pipeline {
             steps {
                 sh '''
                     echo $DOCKER_CREDS_PSW | docker login -u $DOCKER_CREDS_USR --password-stdin
-                    docker tag myapp:latest kuunyangna/myapp-10
-                    docker push kuunyangna/myapp-10
+                    docker build -t kuunyangna/myapp-10:v2 .
+                    docker push kuunyangna/myapp-10:v2
                 '''
             }
         }

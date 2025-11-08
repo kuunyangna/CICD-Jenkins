@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myapp-container
-        image: kuunyangna/myapp-10:latest
+        image: kuunyangna/myapp-11:v2
         imagePullPolicy: Always   
         ports:
         - containerPort: 80

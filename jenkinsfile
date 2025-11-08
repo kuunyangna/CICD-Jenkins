@@ -50,7 +50,7 @@ pipeline {
                 withCredentials([aws(credentialsId: 'aws-creds', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     sh '''
                         # Update kubeconfig to connect Jenkins to your EKS cluster
-                        aws eks update-kubeconfig --region us-east-1 --name aquila-cluster
+                        aws eks update-kubeconfig --region us-east-1 --name my-eks-cluster-final
 
                         # Apply the Kubernetes manifests
                         kubectl apply -f k8s-deployment.yaml

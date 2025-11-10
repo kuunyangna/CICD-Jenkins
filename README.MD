@@ -54,6 +54,7 @@ Configure the following **credentials in Jenkins**:
 ### 1. Cleanup Stage
 Removes all files from the Jenkins workspace to ensure a clean build.
 
+
 ```groovy
 stage('Cleanup') {
     steps {

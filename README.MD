@@ -62,8 +62,12 @@ stage('Cleanup') {
 }
 
 2. Checkout Code Stage
-Pulls the latest version of the application code from the GitHub repository.
-
+Pulls the latest version of the application code from the GitHub repository
+stage('Checkout Code') {
+    steps {
+        git branch: 'main', url: 'https://github.com/kuunyangna/CICD-Jenkins.git'
+    }
+}
 
 ## **3. Unit Testing Stage**
 

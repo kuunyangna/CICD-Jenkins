@@ -70,7 +70,7 @@ stage('Checkout Code') {
     }
 }
 
-## **3. Unit Testing Stage**
+## 3. Unit Testing Stage
 
 Runs Maven unit tests to verify that the code functions as expected.
 

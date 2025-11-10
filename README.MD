@@ -61,7 +61,7 @@ stage('Cleanup') {
     }
 }
 
-### 2. Checkout Code Stage
+### **2. Checkout Code Stage**
 Pulls the latest version of the application code from the GitHub repository.
 Pulls the latest code from GitHub:
 stage('Checkout Code') {
@@ -70,7 +70,7 @@ stage('Checkout Code') {
     }
 }
 
-## 3. Unit Testing Stage
+## **3. Unit Testing Stage**
 Runs Maven unit tests:
 stage('Unit Testing') {
     steps {
@@ -78,7 +78,7 @@ stage('Unit Testing') {
     }
 }
 
-## 4. Build Docker Image Stage
+## **4. Build Docker Image Stage**
 Builds the Docker image locally:
 stage('Build Docker Image') {
     steps {
@@ -86,7 +86,7 @@ stage('Build Docker Image') {
     }
 }
 
-## 5. Push to Docker Hub Stage
+## **5. Push to Docker Hub Stage**
 Logs in to Docker Hub and pushes the image:
 stage('Build & Push Docker Image') {
     steps {
@@ -98,7 +98,7 @@ stage('Build & Push Docker Image') {
     }
 }
 
-## 6. Deploy to EKS Stage
+## **6. Deploy to EKS Stage**
 Updates kubeconfig and applies Kubernetes manifests:
 stage('Deploy to EKS') {
     steps {

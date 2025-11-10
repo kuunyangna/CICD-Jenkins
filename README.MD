@@ -61,33 +61,47 @@ stage('Cleanup') {
     }
 }
 
-### **2. Checkout Code Stage**
+## **2. Checkout Code Stage**
+
 Pulls the latest version of the application code from the GitHub repository.
-Pulls the latest code from GitHub:
+
+```groovy
 stage('Checkout Code') {
     steps {
         git branch: 'main', url: 'https://github.com/kuunyangna/CICD-Jenkins.git'
     }
 }
 
+
 ## **3. Unit Testing Stage**
-Runs Maven unit tests:
+
+Runs Maven unit tests to verify that the code functions as expected.
+
+```groovy
 stage('Unit Testing') {
     steps {
         sh 'mvn test'
     }
 }
 
+
 ## **4. Build Docker Image Stage**
-Builds the Docker image locally:
+
+Builds the Docker image locally from the Dockerfile in the project directory.
+
+```groovy
 stage('Build Docker Image') {
     steps {
         sh 'docker build -t myapp .'
     }
 }
 
+
 ## **5. Push to Docker Hub Stage**
-Logs in to Docker Hub and pushes the image:
+
+Logs in to Docker Hub and pushes the built Docker image to your repository.
+
+```groovy
 stage('Build & Push Docker Image') {
     steps {
         sh '''
@@ -99,7 +113,10 @@ stage('Build & Push Docker Image') {
 }
 
 ## **6. Deploy to EKS Stage**
-Updates kubeconfig and applies Kubernetes manifests:
+
+Updates kubeconfig and applies Kubernetes manifests to deploy the application on your EKS cluster.
+
+```groovy
 stage('Deploy to EKS') {
     steps {
         withCredentials([aws(credentialsId: 'aws-creds', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -118,61 +135,87 @@ stage('Deploy to EKS') {
     }
 }
 
+
 Monitoring Setup with Helm
-1. Install Helm
-On the Jenkins host sudo snap install helm --classic
-any management node:
+
+1. Install Helm  
+On the Jenkins host:  
+```bash
 sudo snap install helm --classic
 
-2. Add helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+2. Add Helm repositories
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
-Repositories
+
 
 3. Deploy Prometheus & Grafana
+
+```bash
 # Create monitoring namespace if not exists
 kubectl create namespace monitoring
 
+
 # Deploy Prometheus and Grafana with gp2 storage class
+
+```bash
 helm install prometheus prometheus-community/kube-prometheus-stack \
   -n monitoring \
   --set prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName=gp2 \
   --set grafana.persistence.storageClassName=gp2
 
+
 4. Access Grafana
+
 Get the Grafana admin password:
+
+```bash
 kubectl get secret --namespace monitoring prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 
 Port-forward to local machine:
+
+```bash
 kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring
 
-Access Grafana:
-http://localhost:3000
 
 5. Access Prometheus
+
 Port-forward Prometheus:
+
+```bash
 kubectl -n monitoring port-forward svc/prometheus-kube-prometheus-prometheus 9090:9090
 
-Access Prometheus:
+
+Access Prometheus:  
 http://localhost:9090
 
 You can also use the LoadBalancer URL for Grafana and Prometheus to access them externally.
 
+
 6. Import Dashboards in Grafana
+
 Recommended dashboards for EKS and Kubernetes monitoring:
+
 | Dashboard Purpose             | ID (Grafana) |
-| ----------------------------- | ------------ |
+|-------------------------------|--------------|
 | Node Exporter Metrics         | 1860         |
 | Kubernetes Cluster Monitoring | 6417         |
 | Kubernetes Metrics Overview   | 315          |
 | Prometheus 2.0 Overview       | 3662         |
 
+
 Steps to import:
-Login to Grafana → + → Import
-Paste Dashboard ID
+
+Login to Grafana → + → Import  
+Paste Dashboard ID  
 Select Prometheus as the data source → Click Import
 
-Author
-Aquila Kuunyangna
-DevOps Engineer | 3x AWS Certified | Cloud & Automation Enthusiast
+---
+
+**Author**  
+Aquila Kuunyangna  
+DevOps Engineer | 3x AWS Certified | Cloud & Automation Enthusiast  
 [LinkedIn Profile](https://www.linkedin.com/in/kuunyangna)

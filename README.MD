@@ -61,11 +61,8 @@ stage('Cleanup') {
     }
 }
 
-## **2. Checkout Code Stage**
-
+2. Checkout Code Stage
 Pulls the latest version of the application code from the GitHub repository.
-
-```groovy
 stage('Checkout Code') {
     steps {
         git branch: 'main', url: 'https://github.com/kuunyangna/CICD-Jenkins.git'

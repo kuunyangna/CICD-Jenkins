@@ -52,7 +52,7 @@ Configure the following **credentials in Jenkins**:
 ## Jenkins Pipeline Workflow
 
 ### 1. Cleanup Stage
-Removes all files from the Jenkins workspace to ensure a clean build
+Removes all files from the Jenkins workspace to ensure a clean build.
 
 ```groovy
 stage('Cleanup') {
@@ -62,7 +62,7 @@ stage('Cleanup') {
 }
 
 2. Checkout Code Stage
-Pulls the latest version of the application code from the GitHub repository
+Pulls the latest version of the application code from the GitHub repository.
 stage('Checkout Code') {
     steps {
         git branch: 'main', url: 'https://github.com/kuunyangna/CICD-Jenkins.git'

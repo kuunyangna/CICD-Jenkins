@@ -82,7 +82,7 @@ stage('Unit Testing') {
 }
 
 
-## **4. Build Docker Image Stage**
+## 4. Build Docker Image Stage
 
 Builds the Docker image locally from the Dockerfile in the project directory.
 
@@ -94,7 +94,7 @@ stage('Build Docker Image') {
 }
 
 
-## **5. Push to Docker Hub Stage**
+## 5. Push to Docker Hub Stage
 
 Logs in to Docker Hub and pushes the built Docker image to your repository.
 
@@ -109,7 +109,7 @@ stage('Build & Push Docker Image') {
     }
 }
 
-## **6. Deploy to EKS Stage**
+## 6. Deploy to EKS Stage
 
 Updates kubeconfig and applies Kubernetes manifests to deploy the application on your EKS cluster.
 

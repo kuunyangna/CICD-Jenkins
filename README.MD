@@ -51,7 +51,7 @@ Configure the following **credentials in Jenkins**:
 
 ## Jenkins Pipeline Workflow
 
-##1. Cleanup Stage
+###1. Cleanup Stage
 Removes all files from the Jenkins workspace to ensure a clean build.
 
 
@@ -62,7 +62,7 @@ stage('Cleanup') {
     }
 }
 
-##2. Checkout Code Stage
+###2. Checkout Code Stage
 Pulls the latest version of the application code from the GitHub repository.
 stage('Checkout Code') {
     steps {

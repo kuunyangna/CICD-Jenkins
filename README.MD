@@ -62,7 +62,7 @@ stage('Cleanup') {
     }
 }
 
-2. Checkout Code Stage
+##2. Checkout Code Stage
 Pulls the latest version of the application code from the GitHub repository.
 stage('Checkout Code') {
     steps {
@@ -212,7 +212,7 @@ Select Prometheus as the data source → Click Import
 
 ---
 
-**Author**  
+Author
 Aquila Kuunyangna  
 DevOps Engineer | 3x AWS Certified | Cloud & Automation Enthusiast  
 [LinkedIn Profile](https://www.linkedin.com/in/kuunyangna)

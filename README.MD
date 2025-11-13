@@ -51,7 +51,7 @@ Configure the following **credentials in Jenkins**:
 
 ## Jenkins Pipeline Workflow
 
-###1. Cleanup Stage
+1. Cleanup Stage
 Removes all files from the Jenkins workspace to ensure a clean build.
 
 
@@ -62,7 +62,7 @@ stage('Cleanup') {
     }
 }
 
-###2. Checkout Code Stage
+2. Checkout Code Stage
 Pulls the latest version of the application code from the GitHub repository.
 stage('Checkout Code') {
     steps {
@@ -70,7 +70,7 @@ stage('Checkout Code') {
     }
 }
 
-## 3. Unit Testing Stage
+3. Unit Testing Stage
 
 Runs Maven unit tests to verify that the code functions as expected.
 
@@ -82,7 +82,7 @@ stage('Unit Testing') {
 }
 
 
-## 4. Build Docker Image Stage
+4. Build Docker Image Stage
 
 Builds the Docker image locally from the Dockerfile in the project directory.
 
@@ -94,7 +94,7 @@ stage('Build Docker Image') {
 }
 
 
-## 5. Push to Docker Hub Stage
+5. Push to Docker Hub Stage
 
 Logs in to Docker Hub and pushes the built Docker image to your repository.
 
@@ -109,7 +109,7 @@ stage('Build & Push Docker Image') {
     }
 }
 
-## 6. Deploy to EKS Stage
+6. Deploy to EKS Stage
 
 Updates kubeconfig and applies Kubernetes manifests to deploy the application on your EKS cluster.
 

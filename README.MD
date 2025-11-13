@@ -51,7 +51,7 @@ Configure the following **credentials in Jenkins**:
 
 ## Jenkins Pipeline Workflow
 
-### 1. Cleanup Stage
+##1. Cleanup Stage
 Removes all files from the Jenkins workspace to ensure a clean build.
 
 
